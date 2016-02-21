@@ -1,16 +1,21 @@
 
 package org.usfirst.frc.team2521.robot;
 
+import org.usfirst.frc.team2521.robot.commands.Autonomous;
+import org.usfirst.frc.team2521.robot.commands.MoveForTime;
+import org.usfirst.frc.team2521.robot.commands.MoveToDistance;
 import org.usfirst.frc.team2521.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team2521.robot.subsystems.FlyWheels;
 import org.usfirst.frc.team2521.robot.subsystems.Intake;
 import org.usfirst.frc.team2521.robot.subsystems.Sensors;
 import org.usfirst.frc.team2521.robot.subsystems.Yaw;
+import org.usfirst.frc.team2521.robot.subsystems.YawNoPID;
 import org.usfirst.frc.team2521.robot.subsystems.Pitch;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -26,9 +31,11 @@ public class Robot extends IterativeRobot {
 	public static FlyWheels flyWheels;
 	public static Sensors sensors;
 	public static Pitch pitch;
-	public static Yaw yaw;
+	public static YawNoPID yaw;
 	
 	public static OI oi;
+	
+	Autonomous auto;
 	
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -39,7 +46,7 @@ public class Robot extends IterativeRobot {
 		intake = new Intake();
 		flyWheels = new FlyWheels();
 		pitch = new Pitch();
-		yaw = new Yaw();
+		yaw = new YawNoPID();
 		
 		oi = new OI();
 	}
@@ -50,6 +57,7 @@ public class Robot extends IterativeRobot {
 	 * the robot is disabled.
 	 */
 	public void disabledInit() {
+		flyWheels.stop();
 	}
 	
 	public void disabledPeriodic() {
@@ -67,6 +75,9 @@ public class Robot extends IterativeRobot {
 	 * to the switch structure below with additional strings & commands.
 	 */
 	public void autonomousInit() {
+		auto = new Autonomous();
+		//auto.start();
+		SmartDashboard.putString("Mode", "auto");
 	}
 	
 	/**
@@ -77,6 +88,7 @@ public class Robot extends IterativeRobot {
 	}
 	
 	public void teleopInit() {
+		SmartDashboard.putString("Mode", "teleop");
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove

@@ -1,8 +1,6 @@
 package org.usfirst.frc.team2521.robot.commands;
 
-import org.usfirst.frc.team2521.robot.OI;
 import org.usfirst.frc.team2521.robot.Robot;
-import org.usfirst.frc.team2521.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -10,23 +8,20 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class YawTeleop extends Command {
+public class DisplaySensors extends Command {
 
-    public YawTeleop() {
-    	requires(Robot.yaw);
+    public DisplaySensors() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	//Robot.yaw.teleopInit();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.yaw.set(OI.getInstance().getSecondaryStick().getX()*RobotMap.YAW_SENSITIVITY);
-    	//SmartDashboard.putBoolean("Yaw called", true);
+    	Robot.sensors.display();
     }
 
     // Make this return true when this Command no longer needs to run execute()

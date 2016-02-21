@@ -4,6 +4,7 @@ import org.usfirst.frc.team2521.robot.OI;
 import org.usfirst.frc.team2521.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -18,13 +19,15 @@ public class PitchTeleop extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.pitch.teleopInit();
+    	//Robot.pitch.teleopInit();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.pitch.set(OI.getInstance().getSecondaryStick().getY());
+    	Robot.pitch.set(-OI.getInstance().getSecondaryStick().getY());
+    	//SmartDashboard.putBoolean("Pitch called no PID", true);
     	//Robot.turret.setYaw(OI.getInstance().getSecondaryStick().getX());
+    	//System.out.println("Pitch called");
     }
 
     // Make this return true when this Command no longer needs to run execute()
