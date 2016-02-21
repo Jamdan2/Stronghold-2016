@@ -1,9 +1,9 @@
 
 package org.usfirst.frc.team2521.robot;
 
-import org.usfirst.frc.team2521.robot.commands.Autonomous;
-import org.usfirst.frc.team2521.robot.commands.MoveForTime;
-import org.usfirst.frc.team2521.robot.commands.MoveToDistance;
+import org.usfirst.frc.team2521.robot.commands.autoCommands.Autonomous;
+import org.usfirst.frc.team2521.robot.commands.autoCommands.MoveForTime;
+import org.usfirst.frc.team2521.robot.commands.driveCommands.MoveToDistance;
 import org.usfirst.frc.team2521.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team2521.robot.subsystems.FlyWheels;
 import org.usfirst.frc.team2521.robot.subsystems.Intake;

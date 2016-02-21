@@ -2,7 +2,7 @@ package org.usfirst.frc.team2521.robot.subsystems;
 
 import org.usfirst.frc.team2521.robot.Robot;
 import org.usfirst.frc.team2521.robot.RobotMap;
-import org.usfirst.frc.team2521.robot.commands.YawTeleop;
+import org.usfirst.frc.team2521.robot.commands.turretCommands.YawTeleop;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;

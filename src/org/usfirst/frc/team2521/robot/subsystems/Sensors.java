@@ -1,7 +1,7 @@
 package org.usfirst.frc.team2521.robot.subsystems;
 
 import org.usfirst.frc.team2521.robot.RobotMap;
-import org.usfirst.frc.team2521.robot.commands.DisplaySensors;
+import org.usfirst.frc.team2521.robot.commands.shooterCommands.DisplaySensors;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.Subsystem;

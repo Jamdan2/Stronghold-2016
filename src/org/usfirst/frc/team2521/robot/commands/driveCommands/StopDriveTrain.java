@@ -1,16 +1,13 @@
-package org.usfirst.frc.team2521.robot.commands;
-
-import org.usfirst.frc.team2521.robot.Robot;
+package org.usfirst.frc.team2521.robot.commands.driveCommands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
-public class DisplaySensors extends Command {
+public class StopDriveTrain extends Command {
 
-    public DisplaySensors() {
+    public StopDriveTrain() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -21,7 +18,6 @@ public class DisplaySensors extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.sensors.display();
     }
 
     // Make this return true when this Command no longer needs to run execute()

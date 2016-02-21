@@ -1,15 +1,22 @@
-package org.usfirst.frc.team2521.robot.commands;
+package org.usfirst.frc.team2521.robot.commands.shooterCommands;
 
+import org.usfirst.frc.team2521.robot.commands.intakeCommands.SetPusher;
+
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class LinkedIntakeStop extends CommandGroup {
+public class ShootBall extends CommandGroup {
     
-    public  LinkedIntakeStop() {
-    	addParallel(new IntakeStop());
-    	addParallel(new StopFlyWheels());
+    public  ShootBall() { 
+    	addParallel(new SetFlyWheels(true));
+    	addSequential(new SetPusher(true));
+    	addSequential(new SetPusher(false));
+    	Timer.delay(1);
+    	end();
+    	
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

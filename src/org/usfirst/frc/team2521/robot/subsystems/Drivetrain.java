@@ -3,7 +3,7 @@ package org.usfirst.frc.team2521.robot.subsystems;
 
 import org.usfirst.frc.team2521.robot.OI;
 import org.usfirst.frc.team2521.robot.RobotMap;
-import org.usfirst.frc.team2521.robot.commands.TeleoperatedDrive;
+import org.usfirst.frc.team2521.robot.commands.driveCommands.TeleoperatedDrive;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Joystick;

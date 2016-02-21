@@ -1,4 +1,6 @@
-package org.usfirst.frc.team2521.robot.commands;
+package org.usfirst.frc.team2521.robot.commands.intakeCommands;
+
+import org.usfirst.frc.team2521.robot.commands.shooterCommands.SetFlyWheels;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 

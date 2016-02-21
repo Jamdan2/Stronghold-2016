@@ -1,4 +1,4 @@
-package org.usfirst.frc.team2521.robot.commands;
+package org.usfirst.frc.team2521.robot.commands.turretCommands;
 
 import org.usfirst.frc.team2521.robot.OI;
 import org.usfirst.frc.team2521.robot.Robot;

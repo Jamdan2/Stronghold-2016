@@ -1,20 +1,20 @@
-
-package org.usfirst.frc.team2521.robot.commands;
+package org.usfirst.frc.team2521.robot.commands.driveCommands;
 
 import org.usfirst.frc.team2521.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Move the robot to a certain encoder location
  */
-public class AutomatedIntake extends Command {
+public class MoveToDistance extends Command {
 	
-	public AutomatedIntake() {
-		requires(Robot.intake);
-		requires(Robot.flyWheels);
-		// Use requires() here to declare subsystem dependencies
-		// eg. requires(chassis);
+	private int distance;
+	
+	public MoveToDistance(int distance) {
+		requires(Robot.drivetrain);
+		
+		this.distance = distance;
 	}
 	
 	// Called just before this Command runs the first time
@@ -23,21 +23,16 @@ public class AutomatedIntake extends Command {
 	
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		if (!Robot.sensors.ballInBot()) {
-			Robot.intake.in();
-			Robot.flyWheels.in();
-		}
 	}
 	
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return Robot.sensors.ballInShooter();
+		return true;
 	}
 	
 	// Called once after isFinished returns true
 	protected void end() {
-		Robot.intake.stop();
-		Robot.flyWheels.stop();
+		Robot.drivetrain.setPosition(distance);
 	}
 	
 	// Called when another command which requires one or more of the same

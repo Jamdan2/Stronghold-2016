@@ -1,16 +1,16 @@
 
 package org.usfirst.frc.team2521.robot;
 
-import org.usfirst.frc.team2521.robot.commands.AutomatedIntake;
-import org.usfirst.frc.team2521.robot.commands.IntakeIn;
-import org.usfirst.frc.team2521.robot.commands.IntakeOut;
-import org.usfirst.frc.team2521.robot.commands.IntakeStop;
-import org.usfirst.frc.team2521.robot.commands.LinkedIntake;
-import org.usfirst.frc.team2521.robot.commands.LinkedIntakeStop;
-import org.usfirst.frc.team2521.robot.commands.SetFlyWheels;
-import org.usfirst.frc.team2521.robot.commands.SetPusher;
-import org.usfirst.frc.team2521.robot.commands.ShootBall;
-import org.usfirst.frc.team2521.robot.commands.StopFlyWheels;
+import org.usfirst.frc.team2521.robot.commands.autoCommands.AutomatedIntake;
+import org.usfirst.frc.team2521.robot.commands.intakeCommands.IntakeIn;
+import org.usfirst.frc.team2521.robot.commands.intakeCommands.IntakeOut;
+import org.usfirst.frc.team2521.robot.commands.intakeCommands.IntakeStop;
+import org.usfirst.frc.team2521.robot.commands.intakeCommands.LinkedIntake;
+import org.usfirst.frc.team2521.robot.commands.intakeCommands.LinkedIntakeStop;
+import org.usfirst.frc.team2521.robot.commands.intakeCommands.SetPusher;
+import org.usfirst.frc.team2521.robot.commands.shooterCommands.SetFlyWheels;
+import org.usfirst.frc.team2521.robot.commands.shooterCommands.ShootBall;
+import org.usfirst.frc.team2521.robot.commands.shooterCommands.StopFlyWheels;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;

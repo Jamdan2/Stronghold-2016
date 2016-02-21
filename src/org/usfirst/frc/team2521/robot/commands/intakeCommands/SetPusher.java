@@ -1,4 +1,4 @@
-package org.usfirst.frc.team2521.robot.commands;
+package org.usfirst.frc.team2521.robot.commands.intakeCommands;
 
 import org.usfirst.frc.team2521.robot.Robot;
 
@@ -7,10 +7,10 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class IntakeStop extends Command {
-
-    public IntakeStop() {
-    	requires(Robot.intake);
+public class SetPusher extends Command {
+	boolean out;
+    public SetPusher(boolean out) {
+    	this.out = out;
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -25,12 +25,22 @@ public class IntakeStop extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+    	if (out) {
+    		//return Robot.sensors.ballInShooter();
+    		return true;
+    	} else {
+    		//return !Robot.sensors.ballInBot();
+    		return true;
+    	}
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.intake.stop();
+    	if (out) {
+    		Robot.flyWheels.setPusher(true);
+    	} else {
+    		Robot.flyWheels.setPusher(false);
+    	}
     }
 
     // Called when another command which requires one or more of the same
