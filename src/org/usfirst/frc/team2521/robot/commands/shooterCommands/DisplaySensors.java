@@ -1,9 +1,5 @@
-<<<<<<< HEAD:src/org/usfirst/frc/team2521/robot/commands/shooterCommands/DisplaySensors.java
-package org.usfirst.frc.team2521.robot.commands.shooterCommands;
-=======
 
-package org.usfirst.frc.team2521.robot.commands;
->>>>>>> master:src/org/usfirst/frc/team2521/robot/commands/DisplaySensors.java
+package org.usfirst.frc.team2521.robot.commands.shooterCommands;
 
 import org.usfirst.frc.team2521.robot.Robot;
 

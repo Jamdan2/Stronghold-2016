@@ -4,12 +4,10 @@ package org.usfirst.frc.team2521.robot.subsystems;
 import org.usfirst.frc.team2521.robot.OI;
 import org.usfirst.frc.team2521.robot.Robot;
 import org.usfirst.frc.team2521.robot.RobotMap;
-<<<<<<< HEAD
+
 import org.usfirst.frc.team2521.robot.commands.shooterCommands.DisplaySensors;
-=======
+
 import org.usfirst.frc.team2521.robot.OI.Defense;
-import org.usfirst.frc.team2521.robot.commands.DisplaySensors;
->>>>>>> master
 
 import com.kauailabs.navx.frc.AHRS;
 
