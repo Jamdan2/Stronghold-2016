@@ -5,14 +5,18 @@ import org.usfirst.frc.team2521.robot.commands.autoCommands.Autonomous;
 import org.usfirst.frc.team2521.robot.commands.autoCommands.MoveForTime;
 import org.usfirst.frc.team2521.robot.commands.driveCommands.MoveToDistance;
 import org.usfirst.frc.team2521.robot.subsystems.Drivetrain;
+import org.usfirst.frc.team2521.robot.subsystems.DrivetrainPID;
 import org.usfirst.frc.team2521.robot.subsystems.FlyWheels;
 import org.usfirst.frc.team2521.robot.subsystems.Intake;
 import org.usfirst.frc.team2521.robot.subsystems.Sensors;
+import org.usfirst.frc.team2521.robot.subsystems.TalonLeft;
+import org.usfirst.frc.team2521.robot.subsystems.TalonRight;
 import org.usfirst.frc.team2521.robot.subsystems.Yaw;
 import org.usfirst.frc.team2521.robot.subsystems.YawNoPID;
 import org.usfirst.frc.team2521.robot.subsystems.Pitch;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -26,27 +30,31 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 	
-	public static Drivetrain drivetrain;
+	public static DrivetrainPID drivetrain;
 	public static Intake intake;
 	public static FlyWheels flyWheels;
 	public static Sensors sensors;
 	public static Pitch pitch;
 	public static YawNoPID yaw;
+	public static TalonLeft talonLeft;
+	public static TalonRight talonRight;
 	
 	public static OI oi;
 	
-	Autonomous auto;
+	Command auto;
 	
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
 	public void robotInit() {
-		drivetrain = new Drivetrain();
+		drivetrain = new DrivetrainPID();
 		intake = new Intake();
 		flyWheels = new FlyWheels();
 		pitch = new Pitch();
 		yaw = new YawNoPID();
+		talonLeft = new TalonLeft();
+		talonRight = new TalonRight();
 		
 		oi = new OI();
 	}
@@ -76,7 +84,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public void autonomousInit() {
 		auto = new Autonomous();
-		//auto.start();
+		auto.start();
 		SmartDashboard.putString("Mode", "auto");
 	}
 	

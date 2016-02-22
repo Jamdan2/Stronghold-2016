@@ -1,30 +1,32 @@
-
 package org.usfirst.frc.team2521.robot.subsystems;
 
 import org.usfirst.frc.team2521.robot.OI;
+import org.usfirst.frc.team2521.robot.Robot;
 import org.usfirst.frc.team2521.robot.RobotMap;
-import org.usfirst.frc.team2521.robot.commands.driveCommands.TeleoperatedDrive;
+import org.usfirst.frc.team2521.robot.commands.TeleoperatedDrive;
 
 import edu.wpi.first.wpilibj.CANTalon;
-import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
+import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
-public class Drivetrain extends Subsystem {
-	// Configured for rhino
-	
+public class DrivetrainPID extends PIDSubsystem {
 	private RobotDrive frontDrive;
 	private RobotDrive rearDrive;
 	
+	private final double traverseOffset = 0.1;
+	
 	private CANTalon frontLeft, frontRight, rearLeft, rearRight;
 	
-	public Drivetrain() {
-		frontLeft = new CANTalon(RobotMap.FRONT_LEFT_MOTOR);
+    // Initialize your subsystem here
+    public DrivetrainPID() {
+    	super(RobotMap.DRIVE_TURN_P, RobotMap.DRIVE_TURN_I, RobotMap.DRIVE_TURN_D);
+    	frontLeft = new CANTalon(RobotMap.FRONT_LEFT_MOTOR);
 		frontRight = new CANTalon(RobotMap.FRONT_RIGHT_MOTOR);
 		rearLeft = new CANTalon(RobotMap.REAR_LEFT_MOTOR);
 		rearRight = new CANTalon(RobotMap.REAR_RIGHT_MOTOR);
@@ -36,9 +38,9 @@ public class Drivetrain extends Subsystem {
 		
 		frontDrive = new RobotDrive(rearLeft, rearRight);
 		rearDrive = new RobotDrive(rearLeft, rearRight);
-	}
-	
-	public void tankDrive() {
+    }
+    
+    public void tankDrive() {
 		double left = OI.getInstance().getLeftStick().getY();
 		double right = OI.getInstance().getRightStick().getY();
 		
@@ -63,20 +65,25 @@ public class Drivetrain extends Subsystem {
 	}
 	
 	public void setPosition(int encoderPosition) {
-		frontLeft.changeControlMode(TalonControlMode.Position);
-		frontRight.changeControlMode(TalonControlMode.Position);
-		rearLeft.changeControlMode(TalonControlMode.Position);
-		rearRight.changeControlMode(TalonControlMode.Position);
-		
-		frontLeft.set(encoderPosition);
-		frontRight.set(encoderPosition);
-		rearLeft.set(encoderPosition);
-		rearRight.set(encoderPosition);
+		Robot.talonLeft.setSetpoint(encoderPosition);
+		Robot.talonRight.setSetpoint(encoderPosition);
+	}
+	
+	public void setLeft(double value){
+		frontLeft.set(value);
+		rearLeft.changeControlMode(TalonControlMode.Follower);
+		rearLeft.set(RobotMap.FRONT_LEFT_MOTOR);
+	}
+	
+	public void setRight(double value){
+		frontRight.set(value);
+		rearRight.changeControlMode(TalonControlMode.Follower);
+		rearRight.set(RobotMap.FRONT_RIGHT_MOTOR);
 	}
 	
 	public void set(double value) {
 		frontRight.set(value);
-		frontLeft.set(value);
+		frontLeft.set(-value);
 		
 		SmartDashboard.putNumber("Front right", frontRight.get());
 		rearRight.changeControlMode(TalonControlMode.Follower);
@@ -86,8 +93,23 @@ public class Drivetrain extends Subsystem {
 		rearLeft.changeControlMode(TalonControlMode.Follower);
 		rearLeft.set(RobotMap.FRONT_LEFT_MOTOR);
 	}
-	
-	public void initDefaultCommand() {
-		setDefaultCommand(new TeleoperatedDrive());
-	}
+    
+    public void initDefaultCommand() {
+    	setDefaultCommand(new TeleoperatedDrive());
+        // Set the default command for a subsystem here.
+    }
+    
+    protected double returnPIDInput() {
+        // Return your input value for the PID loop
+        // e.g. a sensor, like a potentiometer:
+        // yourPot.getAverageVoltage() / kYourMaxVoltage;
+    	return Robot.sensors.getYaw();
+    }
+    
+    protected void usePIDOutput(double output) {
+    	setRight(output);
+    	setLeft(output);
+        // Use output to drive your system, like a motor
+        // e.g. yourMotor.set(output);
+    }
 }
